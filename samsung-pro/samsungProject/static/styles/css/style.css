@@ -1,0 +1,21 @@
+.titulo-principal{
+    font-family: 'Dancing Script', cursive !important;
+    font-size: 2.8rem;
+    text-align: center;
+}
+
+.titulo-secundario{
+    font-size: 1.5rem !important;
+    text-align: right !important;
+}
+
+
+.resource-text{
+    margin-bottom: 0 !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}

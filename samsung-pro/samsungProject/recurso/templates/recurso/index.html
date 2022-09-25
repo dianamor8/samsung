@@ -1,0 +1,58 @@
+{% extends "general.html" %}
+
+{% block encabezado %}
+<h2 class="titulo-secundario"> <b> RECURSOS DIDÁCTICOS </b></h2>
+{% endblock encabezado %}
+
+{% block contenedor %}
+<div class="container">
+    <div class="row">
+        {% if resource_list %}
+            {% for resource in resource_list %}
+                <div class="col col-12 col-sm-10 col-md-6 col-lg-4">
+                    
+                        <div class="card">
+                            <img src="{{resource.image.url }}" class="card-img-top" alt="recurso">
+                            <div class="card-body">
+                              <h5 class="card-title"><b>{{resource.name}}</b></h5>
+                              <p class="card-text resource-text">{{resource.description}}</p>
+                              <i><p class="card-text resource-text"> Instrucción: {{resource.instruction}}</p></i>                                
+                            <div class="row-fluid">
+                                <p>
+                                    {% if resource.status %}
+                                      <small class="text-success"> <b> PUBLICADO</b></small>                                                            
+                                    {% else %}
+                                      <small class="text-danger"> <b> NO PUBLICADO </b></small>
+                                    {% endif %}                                
+                                </p>
+                            </div>
+                              <a href="{{resource.link}}" class="btn btn-primary">Jugar</a>
+                              <a href="#" class="btn btn-secondary">Editar</a>                           
+                              {% if not resource.status %}
+                              <a href="#" class="btn btn-success">Publicar</a>                                                         
+                              {% else %}
+                              <a href="#" class="btn btn-warning">Dejar de Publicar</a>                                                         
+                              {% endif %}                                                    
+                            </div>
+                            <div class="card-footer">
+                                <p> Sugerido para:
+                                    {% for grade in resource.school_grades.all  %}
+                                        <span class="badge bg-light text-dark border border-dark">{{grade}}</span>        
+                                    {% endfor %}
+                                    {% for area in resource.learning_areas.all  %}
+                                        <span class="badge bg-light text-dark border border-dark">{{area}}</span>        
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            
+                        </div>                        
+                        
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay recursos</p>
+        {% endif %}
+    </div>
+</div>
+<br>
+{% endblock contenedor %}

@@ -1,0 +1,42 @@
+{% extends "general.html" %}
+
+{% block encabezado %}
+<h2 class="titulo-secundario"> <b> RECURSOS DIDÁCTICOS </b></h2>
+{% endblock encabezado %}
+
+{% block contenedor %}
+<div class="container">
+    <div class="row">
+        {% if resource_list %}
+            {% for resource in resource_list %}
+                <div class="col col-12 col-sm-10 col-md-6 col-lg-4">
+                    
+                        <div class="card">
+                            <img src="{{resource.image.url }}" class="card-img-top" alt="recurso">
+                            <div class="card-body">
+                              <h5 class="card-title"><b>{{resource.name}}</b></h5>                              
+                              <p class="card-text"> Instrucción: {{resource.instruction}}</p>                            
+                              <a href="{{resource.link}}" target="_blank" class="btn btn-primary">Jugar</a>                                                             
+                            </div>
+                            <div class="card-footer">
+                                <p> Sugerido para:
+                                    {% for grade in resource.school_grades.all  %}
+                                        <span class="badge bg-light text-dark border border-dark">{{grade}}</span>        
+                                    {% endfor %}
+                                    {% for area in resource.learning_areas.all  %}
+                                        <span class="badge bg-light text-dark border border-dark">{{area}}</span>        
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            
+                        </div>                        
+                        
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay recursos</p>
+        {% endif %}
+    </div>
+</div>
+<br>
+{% endblock contenedor %}
